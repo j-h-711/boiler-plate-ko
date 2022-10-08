@@ -3,6 +3,8 @@ const app = express();
 const port = 5000;
 const bodyParser = require("body-parser");
 
+const config = require("./config/key");
+
 const { User } = require("./models/User");
 
 app.use(bodtParser.urlencoded({ extended: true }));
@@ -12,6 +14,7 @@ app.use(bodyParser.json());
 const mongoose = require("mongoose");
 mongoose
   .connect(
+    config.mongoURI,
     "mongodb+srv://jhLee:flwlgud12@boilerplate.gfr0kn6.mongodb.net/?retryWrites=true&w=majority"
     // {
     //   useNewUrlParser: true,
@@ -28,7 +31,7 @@ mongoose
 // 스키마 - 하나하나의 정보들을 지정해줌
 
 app.get("/", (req, res) => {
-  res.send("Hello World!");
+  res.send("Hello World! 안녕하세요~");
 });
 
 app.post("/register", (req, res) => {
